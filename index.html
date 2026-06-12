@@ -127,21 +127,6 @@ h2{
 .cal-grid span{position:relative;display:flex;align-items:center;justify-content:center;min-width:34px;height:40px}
 .cal-grid .heart svg{position:absolute;width:46px;height:46px;left:50%;top:50%;transform:translate(-50%,-52%)}
 
-/* ---------- ПЛАН ДНЯ (зигзаг-карточки) ---------- */
-.plan{max-width:340px;margin:0 auto;display:flex;flex-direction:column}
-.plan-card{
-  width:178px;min-height:170px;
-  border:1px solid var(--line);
-  padding:22px 14px 18px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
-  font-size:18px;line-height:1.45;
-  background:transparent;
-}
-.plan-card svg{width:62px;height:62px;stroke:var(--ink);fill:none;stroke-width:1.4;margin-bottom:8px}
-.plan-card:nth-child(odd){align-self:flex-start}
-.plan-card:nth-child(even){align-self:flex-end;margin-top:-28px}
-.plan-card+.plan-card:nth-child(odd){margin-top:-28px}
-
 /* ---------- МЕСТО ---------- */
 .venue p{font-size:clamp(20px,4vw,24px);line-height:1.5}
 .venue .addr{margin-top:26px}
@@ -247,7 +232,7 @@ input[type=text]{
   <div class="hero-initials"><span id="initial1">K</span><span class="bar"></span><span id="initial2">V</span></div>
   <div class="hero-tagline">Один раз и на всю<br>жизнь...</div>
   <!-- Дата на обложке -->
-  <div class="hero-date" id="heroDate"><span>09</span><span>08</span><span>26</span><span class="tail"></span></div>
+  <div class="hero-date" id="heroDate"><span>26</span><span>06</span><span>26</span><span class="tail"></span></div>
 </section>
 
 <div class="rule rule-r reveal"></div>
@@ -269,8 +254,8 @@ input[type=text]{
       </svg>
     </button>
     <p class="music-note">включите музыку для атмосферы</p>
-    <!-- Положите файл music.mp3 рядом с index.html -->
-    <audio id="bgMusic" src="music.mp3" loop preload="none"></audio>
+    <!-- Музыка: сгенерирована в Higgsfield; чтобы поставить свою — замените src на "music.mp3" и положите файл рядом -->
+    <audio id="bgMusic" src="https://d8j0ntlcm91z4.cloudfront.net/user_3ALoxqOfGNsVFsJX7SR31Kt3JF3/hf_20260612_081946_3ad04b20-b808-4344-891b-26d4782e8a84.m4a" loop preload="none"></audio>
   </div>
 </section>
 
@@ -289,39 +274,6 @@ input[type=text]{
 </section>
 
 <div class="rule rule-r reveal"></div>
-
-<!-- ════════════════════════════════════════════
-     БЛОК 4. ПЛАН ДНЯ
-     ════════════════════════════════════════════ -->
-<section class="reveal">
-  <div class="wrap">
-    <h2>План дня</h2>
-    <div class="plan">
-      <div class="plan-card">
-        <svg viewBox="0 0 64 64"><path d="M24 8h7l-1.5 14a5 5 0 0 1-4 4.4V52m0 0h-7m7 0h7M40 12h7l-1 12a4.5 4.5 0 0 1-3.6 4V50m0 0h-6m6 0h6" transform="translate(-3 0)"/><path d="M22 14h10M39 17h8" transform="translate(-3 0)"/></svg>
-        <div>15:30<br>Welcome зона</div>
-      </div>
-      <div class="plan-card">
-        <svg viewBox="0 0 64 64"><circle cx="26" cy="38" r="12"/><circle cx="40" cy="38" r="12"/><path d="M40 26l-4-7h8l-4 7ZM36 19l2-4h4l2 4"/></svg>
-        <div>16:00<br>Выездная церемония</div>
-      </div>
-      <div class="plan-card">
-        <svg viewBox="0 0 64 64"><circle cx="32" cy="34" r="13"/><circle cx="32" cy="34" r="8"/><path d="M12 20v12m-3-12v7a3 3 0 0 0 6 0v-7M12 32v14M52 20c-2 0-4 3-4 8s2 6 4 6v12m0-26v26"/></svg>
-        <div>17:00<br>Банкет</div>
-      </div>
-      <div class="plan-card">
-        <svg viewBox="0 0 64 64"><path d="M20 52h24v-8H20v8Zm2-8v-8h20v8m-18-8v-7h16v7M28 21h8M32 21v-4m0 0c-1.5-1.5-1.5-3.5 0-5 1.5 1.5 1.5 3.5 0 5Z"/><path d="M24 44c2-2 4-2 6 0s4 2 6 0 4-2 6 0" stroke-linecap="round"/></svg>
-        <div>21:30<br>Торт</div>
-      </div>
-      <div class="plan-card">
-        <svg viewBox="0 0 64 64"><path d="M22 42 42 22M20 20l3 3M28 14l1.5 4M14 28l4 1.5M44 36l4 1.5M36 44l1.5 4M46 46l3 3" stroke-linecap="round"/><circle cx="47" cy="17" r="1"/><circle cx="17" cy="47" r="1"/></svg>
-        <div>23:00<br>Завершение вечера</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="rule rule-l reveal"></div>
 
 <!-- ════════════════════════════════════════════
      БЛОК 5. МЕСТО ПРОВЕДЕНИЯ
@@ -451,7 +403,7 @@ input[type=text]{
    ============================================================ */
 const CONFIG = {
   // Дата и время свадьбы (год, месяц 1-12, день, час, минута)
-  weddingDate: new Date(2026, 8 - 1, 9, 15, 30),
+  weddingDate: new Date(2026, 6 - 1, 26, 15, 30),
 
   /* --- Telegram: куда приходят ответы анкеты ---
      1) В Telegram найдите @BotFather → /newbot → получите ТОКЕН
@@ -513,7 +465,7 @@ document.getElementById('musicBtn').addEventListener('click', async () => {
       spkOn.style.display='none'; spkOff.style.display='';
       note.textContent = 'включите музыку для атмосферы';
     }
-  }catch(e){ note.textContent = 'добавьте файл music.mp3 рядом с index.html'; }
+  }catch(e){ note.textContent = 'не удалось включить музыку — проверьте интернет'; }
 });
 
 /* ---------- КАРУСЕЛЬ ДРЕСС-КОДА ---------- */
