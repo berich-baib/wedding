@@ -52,7 +52,7 @@ body{
    не доходит до краёв, фото по бокам остаётся открытым */
 .sheet{
   position:relative;
-  width:min(1172px, calc(100% - 26px));
+  width:min(820px, calc(100% - 26px));
   margin:26px auto;
   background:var(--veil);
   border-radius:33px;
@@ -109,15 +109,22 @@ h2{
 }
 .hero-date .tail{width:1px;height:clamp(120px,22vh,200px);background:var(--line);margin:18px 0 0 28px}
 
-/* ---------- ПРИВЕТСТВИЕ + МУЗЫКА ---------- */
+/* ---------- ПРИВЕТСТВИЕ ---------- */
 .greet-title{font-size:clamp(40px,8vw,58px);line-height:1.3}
 .greet-text{max-width:540px;margin:34px auto 0}
-.music-btn{
-  background:none;border:none;cursor:pointer;color:var(--ink);
-  margin:56px auto 0;display:block;opacity:.85;transition:opacity .3s;
+
+/* ---------- КНОПКА МУЗЫКИ (в верхнем углу) ---------- */
+.music-fab{
+  position:fixed;top:14px;right:14px;z-index:60;
+  width:40px;height:40px;border-radius:50%;
+  border:none;cursor:pointer;color:var(--ink);
+  background:rgba(245,243,240,.78);
+  box-shadow:0 2px 10px rgba(0,0,0,.14);
+  display:flex;align-items:center;justify-content:center;
+  opacity:.9;transition:opacity .3s,transform .3s;
 }
-.music-btn:hover{opacity:1}
-.music-note{font-size:14px;opacity:.65;margin-top:10px;font-style:italic}
+.music-fab:hover{opacity:1;transform:scale(1.06)}
+.music-fab svg{width:20px;height:20px}
 
 /* ---------- КАЛЕНДАРЬ ---------- */
 .cal{display:inline-block;text-align:center}
@@ -221,6 +228,17 @@ input[type=text]{
 
 <div class="bg bg-real"></div>
 
+<!-- Кнопка музыки: всегда в верхнем углу -->
+<button class="music-fab" id="musicBtn" aria-label="Музыка">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
+    <path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/>
+    <g id="spkOn" style="display:none"><path d="M15 9.5a3.5 3.5 0 0 1 0 5" stroke-linecap="round"/><path d="M17.5 7a7 7 0 0 1 0 10" stroke-linecap="round"/></g>
+    <g id="spkOff"><line x1="15" y1="9.5" x2="20.5" y2="15" stroke-linecap="round"/><line x1="20.5" y1="9.5" x2="15" y2="15" stroke-linecap="round"/></g>
+  </svg>
+</button>
+<!-- Музыка: сгенерирована в Higgsfield; чтобы поставить свою — замените src на "music.mp3" и положите файл рядом -->
+<audio id="bgMusic" src="https://d8j0ntlcm91z4.cloudfront.net/user_3ALoxqOfGNsVFsJX7SR31Kt3JF3/hf_20260612_081946_3ad04b20-b808-4344-891b-26d4782e8a84.m4a" loop preload="auto"></audio>
+
 <!-- «Полотно»: всё содержимое лежит на полупрозрачной панели -->
 <div class="sheet">
 
@@ -245,17 +263,6 @@ input[type=text]{
     <div class="greet-title">Дорогие родные<br>и близкие!</div>
     <p class="greet-text">Мы будем рады разделить с Вами радость неповторимого для нас дня — дня нашей свадьбы! Приглашаем присоединиться к нашему празднику и украсить его своим присутствием!</p>
 
-    <button class="music-btn" id="musicBtn" aria-label="Музыка">
-      <!-- динамик -->
-      <svg id="spk" width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round">
-        <path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/>
-        <g id="spkOn" style="display:none"><path d="M15 9.5a3.5 3.5 0 0 1 0 5" stroke-linecap="round"/><path d="M17.5 7a7 7 0 0 1 0 10" stroke-linecap="round"/></g>
-        <g id="spkOff"><line x1="15" y1="9.5" x2="20.5" y2="15" stroke-linecap="round"/><line x1="20.5" y1="9.5" x2="15" y2="15" stroke-linecap="round"/></g>
-      </svg>
-    </button>
-    <p class="music-note">включите музыку для атмосферы</p>
-    <!-- Музыка: сгенерирована в Higgsfield; чтобы поставить свою — замените src на "music.mp3" и положите файл рядом -->
-    <audio id="bgMusic" src="https://d8j0ntlcm91z4.cloudfront.net/user_3ALoxqOfGNsVFsJX7SR31Kt3JF3/hf_20260612_081946_3ad04b20-b808-4344-891b-26d4782e8a84.m4a" loop preload="none"></audio>
   </div>
 </section>
 
@@ -451,21 +458,24 @@ function tick(){
 }
 tick(); setInterval(tick, 1000);
 
-/* ---------- МУЗЫКА ---------- */
+/* ---------- МУЗЫКА (автозапуск + кнопка-переключатель в углу) ---------- */
 const music = document.getElementById('bgMusic');
-document.getElementById('musicBtn').addEventListener('click', async () => {
-  const note = document.querySelector('.music-note');
-  try{
-    if(music.paused){
-      await music.play();
-      spkOn.style.display=''; spkOff.style.display='none';
-      note.textContent = 'нажмите, чтобы выключить';
-    }else{
-      music.pause();
-      spkOn.style.display='none'; spkOff.style.display='';
-      note.textContent = 'включите музыку для атмосферы';
-    }
-  }catch(e){ note.textContent = 'не удалось включить музыку — проверьте интернет'; }
+const updIcon = () => {
+  spkOn.style.display  = music.paused ? 'none' : '';
+  spkOff.style.display = music.paused ? '' : 'none';
+};
+let userStopped = false;
+
+// пробуем включить сразу; если браузер не даёт автозапуск —
+// включаем при первом касании/скролле/клике
+const tryStart = () => { if(!userStopped && music.paused) music.play().then(updIcon).catch(()=>{}); };
+const gestures = ['pointerdown','touchstart','keydown','scroll'];
+const onGesture = () => { tryStart(); gestures.forEach(g=>removeEventListener(g,onGesture)); };
+music.play().then(updIcon).catch(()=>{ gestures.forEach(g=>addEventListener(g,onGesture,{passive:true})); });
+
+document.getElementById('musicBtn').addEventListener('click', () => {
+  if(music.paused){ userStopped = false; music.play().then(updIcon).catch(()=>{}); }
+  else { userStopped = true; music.pause(); updIcon(); }
 });
 
 /* ---------- КАРУСЕЛЬ ДРЕСС-КОДА ---------- */
