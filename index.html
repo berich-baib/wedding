@@ -47,7 +47,28 @@ body{
 }
 /* фон: сгенерированное фото из вашего Higgsfield; положите рядом свой bg.jpg — он подменится автоматически */
 .bg-real{ background-image:url('https://d8j0ntlcm91z4.cloudfront.net/user_3ALoxqOfGNsVFsJX7SR31Kt3JF3/hf_20260612_073712_3a958c2c-4da0-4912-9080-86fa32c1603a.png'); }
-.veil{position:fixed;inset:0;z-index:-1;background:var(--veil)}
+
+/* «полотно» — полупрозрачная панель по центру, как в оригинале:
+   не доходит до краёв, фото по бокам остаётся открытым */
+.sheet{
+  position:relative;
+  width:min(1172px, calc(100% - 26px));
+  margin:26px auto;
+  background:var(--veil);
+  border-radius:33px;
+  overflow:hidden;
+}
+@media (max-width:600px){
+  .sheet{width:calc(100% - 18px);margin:14px auto;border-radius:22px}
+}
+
+/* анимация «выезда» букв на обложке (как в оригинале) */
+@keyframes aDown{from{opacity:0;transform:translateY(-48px)}to{opacity:1;transform:none}}
+@keyframes aUp{from{opacity:0;transform:translateY(48px)}to{opacity:1;transform:none}}
+@keyframes aLeft{from{opacity:0;transform:translateX(-58px)}to{opacity:1;transform:none}}
+.hero-initials{animation:aDown 1s .15s ease both}
+.hero-tagline{animation:aUp 1s .5s ease both}
+.hero-date{animation:aLeft 1s .85s ease both}
 
 section{padding:84px 22px;position:relative}
 .wrap{max-width:620px;margin:0 auto;text-align:center}
@@ -214,7 +235,9 @@ input[type=text]{
 <body>
 
 <div class="bg bg-real"></div>
-<div class="veil"></div>
+
+<!-- «Полотно»: всё содержимое лежит на полупрозрачной панели -->
+<div class="sheet">
 
 <!-- ════════════════════════════════════════════
      БЛОК 1. ОБЛОЖКА
@@ -404,6 +427,8 @@ input[type=text]{
     <div class="names" id="finaleNames">Кирилл и Виктория!</div>
   </div>
 </section>
+
+</div><!-- конец полотна -->
 
 <!-- ════════════════════════════════════════════
      БЛОК 10. ОТСЧЁТ (тёмный)
