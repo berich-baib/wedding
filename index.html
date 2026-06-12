@@ -91,7 +91,7 @@ h2{
 .reveal.visible{opacity:1;transform:none}
 
 /* ---------- ОБЛОЖКА ---------- */
-.hero{min-height:100svh;padding:34px 26px 60px;display:flex;flex-direction:column}
+.hero{min-height:92svh;padding:34px 26px 28px;display:flex;flex-direction:column}
 .hero-initials{
   align-self:flex-end;
   display:flex;align-items:center;gap:18px;
@@ -113,14 +113,14 @@ h2{
   animation:aUp 1s .65s ease both;
 }
 .hero-date{
-  margin-top:6vh;margin-left:clamp(8px,18vw,230px);
-  font-size:clamp(42px,8vw,60px);line-height:1.05;
+  margin-top:5vh;margin-left:clamp(4px,6vw,56px);
+  font-size:clamp(34px,6.6vw,50px);line-height:1.05;
   display:flex;flex-direction:column;align-items:flex-start;
 }
-.hero-date .tail{width:1px;height:clamp(120px,22vh,200px);background:var(--line);margin:18px 0 0 28px}
+.hero-date .tail{width:1px;height:clamp(56px,9vh,90px);background:var(--line);margin:14px 0 0 24px}
 
 /* ---------- ПРИВЕТСТВИЕ ---------- */
-.greet-title{font-size:clamp(40px,8vw,58px);line-height:1.3}
+.greet-title{font-size:clamp(27px,5.6vw,44px);line-height:1.3;white-space:nowrap}
 .greet-text{max-width:540px;margin:34px auto 0}
 
 /* ---------- КНОПКА МУЗЫКИ (в верхнем углу) ---------- */
@@ -159,16 +159,16 @@ h2{
 .map-btn .arr{font-size:24px;letter-spacing:-2px}
 
 /* ---------- АНКЕТА ---------- */
-.r18{position:absolute;right:max(18px,calc(50% - 360px));top:60px;opacity:.8}
 .rsvp-intro{font-size:clamp(22px,4.4vw,28px);line-height:1.5;max-width:480px;margin:0 auto}
-.chev{margin:34px auto 0;display:block;width:34px}
-.rsvp form{max-width:560px;margin:70px auto 0;text-align:left}
+.rsvp form{max-width:560px;margin:0 auto;text-align:left}
 .f-label{font-size:21px;margin-bottom:8px;display:block}
 input[type=text]{
-  width:100%;background:transparent;border:none;border-bottom:1px solid var(--line);
-  font-family:var(--serif);font-size:20px;color:var(--ink);
-  padding:26px 2px 10px;outline:none;
+  width:100%;background:#fdfcfa;border:1px solid var(--line);
+  font-family:var(--serif);font-size:19px;color:var(--ink);
+  padding:17px 16px;outline:none;margin-top:10px;border-radius:4px;
 }
+input[type=text]::placeholder{color:#9b958d;font-style:italic}
+input[type=text]:focus{box-shadow:0 0 0 2px rgba(60,58,56,.18)}
 .q{margin-top:48px}
 .radio{display:flex;align-items:center;gap:14px;margin-top:18px;cursor:pointer;font-size:18px}
 .radio input{appearance:none;width:24px;height:24px;flex:none;border:1.6px solid #555;border-radius:50%;cursor:pointer;display:grid;place-content:center}
@@ -296,18 +296,9 @@ input[type=text]{
      БЛОК 7. АНКЕТА (RSVP)
      ════════════════════════════════════════════ -->
 <section class="rsvp reveal">
-  <div class="r18">
-    <svg width="58" height="58" viewBox="0 0 58 58" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="29" cy="31" r="22"/><text x="29" y="38" text-anchor="middle" font-size="17" stroke="none" fill="currentColor" font-family="PT Serif,serif">18</text><path d="M46 6v10M41 11h10"/></svg>
-  </div>
   <div class="wrap">
-    <p class="rsvp-intro">Ответьте, пожалуйста, на несколько вопросов, которые<br>мы для Вас подготовили</p>
-    <svg class="chev" viewBox="0 0 34 30" fill="none" stroke="currentColor" stroke-width="2"><path d="m4 3 13 11L30 3M4 14l13 11 13-11"/></svg>
-
     <form id="rsvpForm">
-      <label class="f-label" for="fname">Ваше Имя и Фамилия</label>
-      <input type="text" id="fname" name="name" required autocomplete="name">
-
-      <div class="q">
+      <div class="q" style="margin-top:0">
         <span class="f-label">Сможете ли вы присутствовать на нашем торжестве?</span>
         <label class="radio"><input type="radio" name="attend" value="С удовольствием приду" required> С удовольствием приду</label>
         <label class="radio"><input type="radio" name="attend" value="К сожалению, не смогу присутствовать"> К сожалению, не смогу присутствовать</label>
@@ -318,6 +309,11 @@ input[type=text]{
         <span class="f-label">Нужен ли вам трансфер?</span>
         <label class="radio"><input type="radio" name="transfer" value="Да" required> Да</label>
         <label class="radio"><input type="radio" name="transfer" value="Нет"> Нет</label>
+      </div>
+
+      <div class="q">
+        <span class="f-label">Ваше Имя и Фамилия</span>
+        <input type="text" id="fname" name="name" required autocomplete="name" placeholder="Напишите имя и фамилию">
       </div>
 
       <button class="send-btn" type="submit">Отправить</button>
