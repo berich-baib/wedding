@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Приглашение на свадьбу</title>
+<meta property="og:title" content="Приглашение на свадьбу">
+<meta property="og:description" content="Мы будем рады видеть вас на нашем празднике!">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   ОСНОВНЫЕ НАСТРОЙКИ ВИДА
+   Фон: положите рядом с index.html файлы
+     bg.jpg      — чёрно-белое фото пары (фон всей страницы)
+     bg-dark.jpg — тёмное фото (фон блока отсчёта)
+   Пока файлов нет — показывается серый фон-заглушка.
+   ============================================================ */
+:root{
+  --ink:   #2e2c2a;             /* цвет текста */
+  --line:  #3c3a38;             /* цвет линий и рамок */
+  --veil:  rgba(212,212,212,.72);/* осветление фона (больше — светлее) */
+  --serif: 'PT Serif', Georgia, serif;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--serif);
+  font-weight:400;
+  color:var(--ink);
+  font-size:19px;
+  line-height:1.65;
+  overflow-x:hidden;
+  background:#cfcfcf;
+}
+
+/* фоновое фото на всю страницу (фиксированное) + осветляющая вуаль */
+.bg{
+  position:fixed;inset:0;z-index:-2;
+  background:
+    linear-gradient(160deg,#e3e3e3 0%,#c6c6c6 40%,#d6d6d6 70%,#bfbfbf 100%);
+  background-size:cover;background-position:center top;
+  filter:grayscale(1);
+}
+/* фон: сгенерированное фото из вашего Higgsfield; положите рядом свой bg.jpg — он подменится автоматически */
+.bg-real{ background-image:url('https://d8j0ntlcm91z4.cloudfront.net/user_3ALoxqOfGNsVFsJX7SR31Kt3JF3/hf_20260612_073712_3a958c2c-4da0-4912-9080-86fa32c1603a.png'); }
+.veil{position:fixed;inset:0;z-index:-1;background:var(--veil)}
+
+section{padding:84px 22px;position:relative}
+.wrap{max-width:620px;margin:0 auto;text-align:center}
+h2{
+  font-size:clamp(40px,8vw,58px);
+  font-weight:400;line-height:1.25;
+  margin-bottom:42px;
+}
+
+/* тонкие линии-разделители между блоками, попеременно слева/справа */
+.rule{height:1px;background:var(--line);opacity:.55}
+.rule-l{margin-right:45%}
+.rule-r{margin-left:45%}
+
+/* появление при скролле */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ---------- ОБЛОЖКА ---------- */
+.hero{min-height:100svh;padding:34px 26px 60px;display:flex;flex-direction:column}
+.hero-initials{
+  align-self:flex-end;
+  display:flex;align-items:center;gap:18px;
+  font-size:clamp(54px,9vw,72px);line-height:1;
+  margin-top:13vh;
+}
+.hero-initials .bar{width:1px;height:1.15em;background:var(--line)}
+.hero-tagline{
+  text-align:center;
+  font-size:clamp(34px,7vw,56px);
+  line-height:1.3;
+  margin-top:9vh;
+}
+.hero-date{
+  margin-top:6vh;margin-left:clamp(8px,18vw,230px);
+  font-size:clamp(42px,8vw,60px);line-height:1.05;
+  display:flex;flex-direction:column;align-items:flex-start;
+}
+.hero-date .tail{width:1px;height:clamp(120px,22vh,200px);background:var(--line);margin:18px 0 0 28px}
+
+/* ---------- ПРИВЕТСТВИЕ + МУЗЫКА ---------- */
+.greet-title{font-size:clamp(40px,8vw,58px);line-height:1.3}
+.greet-text{max-width:540px;margin:34px auto 0}
+.music-btn{
+  background:none;border:none;cursor:pointer;color:var(--ink);
+  margin:56px auto 0;display:block;opacity:.85;transition:opacity .3s;
+}
+.music-btn:hover{opacity:1}
+.music-note{font-size:14px;opacity:.65;margin-top:10px;font-style:italic}
+
+/* ---------- КАЛЕНДАРЬ ---------- */
+.cal{display:inline-block;text-align:center}
+.cal-head{display:flex;justify-content:space-between;font-size:clamp(26px,5vw,34px);margin-bottom:26px;gap:60px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:14px 22px;font-size:clamp(18px,3.6vw,24px)}
+.cal-grid .dow{font-size:.82em}
+.cal-grid span{position:relative;display:flex;align-items:center;justify-content:center;min-width:34px;height:40px}
+.cal-grid .heart svg{position:absolute;width:46px;height:46px;left:50%;top:50%;transform:translate(-50%,-52%)}
+
+/* ---------- ПЛАН ДНЯ (зигзаг-карточки) ---------- */
+.plan{max-width:340px;margin:0 auto;display:flex;flex-direction:column}
+.plan-card{
+  width:178px;min-height:170px;
+  border:1px solid var(--line);
+  padding:22px 14px 18px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  font-size:18px;line-height:1.45;
+  background:transparent;
+}
+.plan-card svg{width:62px;height:62px;stroke:var(--ink);fill:none;stroke-width:1.4;margin-bottom:8px}
+.plan-card:nth-child(odd){align-self:flex-start}
+.plan-card:nth-child(even){align-self:flex-end;margin-top:-28px}
+.plan-card+.plan-card:nth-child(odd){margin-top:-28px}
+
+/* ---------- МЕСТО ---------- */
+.venue p{font-size:clamp(20px,4vw,24px);line-height:1.5}
+.venue .addr{margin-top:26px}
+.map-btn{
+  margin-top:44px;
+  display:inline-flex;align-items:center;gap:16px;
+  border:1px solid var(--line);
+  padding:18px 30px;
+  font-family:var(--serif);font-size:21px;color:var(--ink);
+  text-decoration:none;background:transparent;transition:background .3s,color .3s;
+}
+.map-btn:hover{background:var(--ink);color:#eee}
+.map-btn .arr{font-size:24px;letter-spacing:-2px}
+
+/* ---------- ДРЕСС-КОД ---------- */
+.swatches{display:flex;justify-content:center;gap:14px;margin:40px 0 50px}
+.swatch{width:76px;height:34px;border:1px solid var(--line)}
+.carousel{position:relative;max-width:440px;margin:0 auto;aspect-ratio:4/5;overflow:hidden}
+.slide{
+  position:absolute;inset:0;opacity:0;transition:opacity .6s;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(165deg,#777,#4a4a4a 60%,#5e5e5e);
+  color:#ddd;font-style:italic;font-size:20px;padding:20px;
+}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide.on{opacity:1}
+.car-btn{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:2;
+  width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;
+  background:rgba(255,255,255,.92);color:#333;font-size:18px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 10px rgba(0,0,0,.18);
+}
+.car-prev{left:14px}.car-next{right:14px}
+
+/* ---------- АНКЕТА ---------- */
+.r18{position:absolute;right:max(18px,calc(50% - 360px));top:60px;opacity:.8}
+.rsvp-intro{font-size:clamp(22px,4.4vw,28px);line-height:1.5;max-width:480px;margin:0 auto}
+.chev{margin:34px auto 0;display:block;width:34px}
+.rsvp form{max-width:560px;margin:70px auto 0;text-align:left}
+.f-label{font-size:21px;margin-bottom:8px;display:block}
+input[type=text]{
+  width:100%;background:transparent;border:none;border-bottom:1px solid var(--line);
+  font-family:var(--serif);font-size:20px;color:var(--ink);
+  padding:26px 2px 10px;outline:none;
+}
+.q{margin-top:48px}
+.radio{display:flex;align-items:center;gap:14px;margin-top:18px;cursor:pointer;font-size:18px}
+.radio input{appearance:none;width:24px;height:24px;flex:none;border:1.6px solid #555;border-radius:50%;cursor:pointer;display:grid;place-content:center}
+.radio input::before{content:'';width:12px;height:12px;border-radius:50%;background:var(--ink);transform:scale(0);transition:transform .15s}
+.radio input:checked::before{transform:scale(1)}
+.send-btn{
+  display:block;margin:56px auto 0;
+  border:1px solid var(--line);background:transparent;cursor:pointer;
+  font-family:var(--serif);font-size:21px;color:var(--ink);
+  padding:18px 44px;transition:background .3s,color .3s;
+}
+.send-btn:hover{background:var(--ink);color:#eee}
+.form-status{text-align:center;margin-top:20px;font-size:16px;min-height:24px}
+.form-status.ok{color:#3f5c41}
+.form-status.err{color:#8c3d3d}
+
+/* ---------- КОНТАКТЫ ---------- */
+.contacts p{font-size:20px;margin-top:34px}
+.wa{display:inline-block;margin-top:14px;color:var(--ink);opacity:.8}
+.wa:hover{opacity:1}
+.wa svg{width:30px;height:30px}
+
+/* ---------- ФИНАЛ ---------- */
+.finale p{font-size:clamp(30px,6vw,44px)}
+.finale .names{font-size:clamp(44px,9vw,66px);line-height:1.25;margin-top:6px}
+
+/* ---------- ОТСЧЁТ (тёмный блок) ---------- */
+.count{
+  position:relative;color:#e8e8e8;padding:130px 22px 150px;
+  background:linear-gradient(160deg,#2b2b2b,#161616 55%,#242424);
+  background-size:cover;background-position:center;
+}
+/* тёмный фон отсчёта: тоже из Higgsfield; свой файл bg-dark.jpg подменится автоматически */
+.count-real{background-image:url('https://d8j0ntlcm91z4.cloudfront.net/user_3ALoxqOfGNsVFsJX7SR31Kt3JF3/hf_20260612_073713_4ea4913b-10aa-4ecc-841c-41a85c619a30.png')}
+.count::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.45)}
+.count .wrap{position:relative}
+.count-title{font-size:clamp(28px,5.5vw,38px);margin-bottom:64px}
+.count-grid{display:flex;justify-content:center}
+.cd-cell{padding:0 clamp(14px,4vw,34px);text-align:center}
+.cd-cell+.cd-cell{border-left:1px solid rgba(255,255,255,.35)}
+.cd-num{font-size:clamp(46px,10vw,72px);line-height:1}
+.cd-word{font-size:13px;letter-spacing:.04em;margin-top:12px;opacity:.85;font-family:Arial,sans-serif;font-weight:300}
+</style>
+</head>
+<body>
+
+<div class="bg bg-real"></div>
+<div class="veil"></div>
+
+<!-- ════════════════════════════════════════════
+     БЛОК 1. ОБЛОЖКА
+     ════════════════════════════════════════════ -->
+<section class="hero">
+  <!-- Инициалы: латинские буквы как в оригинале -->
+  <div class="hero-initials"><span id="initial1">K</span><span class="bar"></span><span id="initial2">V</span></div>
+  <div class="hero-tagline">Один раз и на всю<br>жизнь...</div>
+  <!-- Дата на обложке -->
+  <div class="hero-date" id="heroDate"><span>09</span><span>08</span><span>26</span><span class="tail"></span></div>
+</section>
+
+<div class="rule rule-r reveal"></div>
+
+<!-- ════════════════════════════════════════════
+     БЛОК 2. ПРИВЕТСТВИЕ + МУЗЫКА
+     ════════════════════════════════════════════ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="greet-title">Дорогие родные<br>и близкие!</div>
+    <p class="greet-text">Мы будем рады разделить с Вами радость неповторимого для нас дня — дня нашей свадьбы! Приглашаем присоединиться к нашему празднику и украсить его своим присутствием!</p>
+
+    <button class="music-btn" id="musicBtn" aria-label="Музыка">
+      <!-- динамик -->
+      <svg id="spk" width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round">
+        <path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/>
+        <g id="spkOn" style="display:none"><path d="M15 9.5a3.5 3.5 0 0 1 0 5" stroke-linecap="round"/><path d="M17.5 7a7 7 0 0 1 0 10" stroke-linecap="round"/></g>
+        <g id="spkOff"><line x1="15" y1="9.5" x2="20.5" y2="15" stroke-linecap="round"/><line x1="20.5" y1="9.5" x2="15" y2="15" stroke-linecap="round"/></g>
+      </svg>
+    </button>
+    <p class="music-note">включите музыку для атмосферы</p>
+    <!-- Положите файл music.mp3 рядом с index.html -->
+    <audio id="bgMusic" src="music.mp3" loop preload="none"></audio>
+  </div>
+</section>
+
+<div class="rule rule-l reveal"></div>
+
+<!-- ════════════════════════════════════════════
+     БЛОК 3. КАЛЕНДАРЬ (строится сам из даты в CONFIG)
+     ════════════════════════════════════════════ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="cal">
+      <div class="cal-head"><span id="calMonth"></span><span id="calYear"></span></div>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+  </div>
+</section>
+
+<div class="rule rule-r reveal"></div>
+
+<!-- ════════════════════════════════════════════
+     БЛОК 4. ПЛАН ДНЯ
+     ════════════════════════════════════════════ -->
+<section class="reveal">
+  <div class="wrap">
+    <h2>План дня</h2>
+    <div class="plan">
+      <div class="plan-card">
+        <svg viewBox="0 0 64 64"><path d="M24 8h7l-1.5 14a5 5 0 0 1-4 4.4V52m0 0h-7m7 0h7M40 12h7l-1 12a4.5 4.5 0 0 1-3.6 4V50m0 0h-6m6 0h6" transform="translate(-3 0)"/><path d="M22 14h10M39 17h8" transform="translate(-3 0)"/></svg>
+        <div>15:30<br>Welcome зона</div>
+      </div>
+      <div class="plan-card">
+        <svg viewBox="0 0 64 64"><circle cx="26" cy="38" r="12"/><circle cx="40" cy="38" r="12"/><path d="M40 26l-4-7h8l-4 7ZM36 19l2-4h4l2 4"/></svg>
+        <div>16:00<br>Выездная церемония</div>
+      </div>
+      <div class="plan-card">
+        <svg viewBox="0 0 64 64"><circle cx="32" cy="34" r="13"/><circle cx="32" cy="34" r="8"/><path d="M12 20v12m-3-12v7a3 3 0 0 0 6 0v-7M12 32v14M52 20c-2 0-4 3-4 8s2 6 4 6v12m0-26v26"/></svg>
+        <div>17:00<br>Банкет</div>
+      </div>
+      <div class="plan-card">
+        <svg viewBox="0 0 64 64"><path d="M20 52h24v-8H20v8Zm2-8v-8h20v8m-18-8v-7h16v7M28 21h8M32 21v-4m0 0c-1.5-1.5-1.5-3.5 0-5 1.5 1.5 1.5 3.5 0 5Z"/><path d="M24 44c2-2 4-2 6 0s4 2 6 0 4-2 6 0" stroke-linecap="round"/></svg>
+        <div>21:30<br>Торт</div>
+      </div>
+      <div class="plan-card">
+        <svg viewBox="0 0 64 64"><path d="M22 42 42 22M20 20l3 3M28 14l1.5 4M14 28l4 1.5M44 36l4 1.5M36 44l1.5 4M46 46l3 3" stroke-linecap="round"/><circle cx="47" cy="17" r="1"/><circle cx="17" cy="47" r="1"/></svg>
+        <div>23:00<br>Завершение вечера</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule rule-l reveal"></div>
+
+<!-- ════════════════════════════════════════════
+     БЛОК 5. МЕСТО ПРОВЕДЕНИЯ
+     ════════════════════════════════════════════ -->
+<section class="venue reveal">
+  <div class="wrap">
+    <h2>Место<br>проведения</h2>
+    <p>Ресторан<br>«Маленькая Швейцария»</p>
+    <p class="addr">Гайское ш., 1, Орск</p>
+    <a class="map-btn" href="https://yandex.ru/maps/?text=Орск, Гайское шоссе 1" target="_blank" rel="noopener">Посмотреть на карте <span class="arr">⟶</span></a>
+  </div>
+</section>
+
+<div class="rule rule-r reveal"></div>
+
+<!-- ════════════════════════════════════════════
+     БЛОК 6. ДРЕСС-КОД
+     ════════════════════════════════════════════ -->
+<section class="reveal">
+  <div class="wrap">
+    <h2>Дресс-код</h2>
+    <p class="rsvp-intro">Мы очень хотим сделать наш первый семейный праздник самым красивым и стильным. И будем рады, если вы в своих нарядах поддержите цветовую гамму нашего торжества.</p>
+    <!-- Цвета дресс-кода: добавьте/поменяйте плашки -->
+    <div class="swatches">
+      <div class="swatch" style="background:#0a0a0a"></div>
+      <div class="swatch" style="background:#ffffff"></div>
+    </div>
+    <!-- Карусель: замените заглушки на свои фото
+         <div class="slide"><img src="look1.jpg" alt=""></div>  -->
+    <div class="carousel" id="carousel">
+      <div class="slide on">фото-пример образа 1</div>
+      <div class="slide">фото-пример образа 2</div>
+      <div class="slide">фото-пример образа 3</div>
+      <button class="car-btn car-prev" id="carPrev" aria-label="Назад">‹</button>
+      <button class="car-btn car-next" id="carNext" aria-label="Вперёд">›</button>
+    </div>
+  </div>
+</section>
+
+<div class="rule rule-l reveal"></div>
+
+<!-- ════════════════════════════════════════════
+     БЛОК 7. АНКЕТА (RSVP)
+     ════════════════════════════════════════════ -->
+<section class="rsvp reveal">
+  <div class="r18">
+    <svg width="58" height="58" viewBox="0 0 58 58" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="29" cy="31" r="22"/><text x="29" y="38" text-anchor="middle" font-size="17" stroke="none" fill="currentColor" font-family="PT Serif,serif">18</text><path d="M46 6v10M41 11h10"/></svg>
+  </div>
+  <div class="wrap">
+    <p class="rsvp-intro">Ответьте, пожалуйста, на несколько вопросов, которые<br>мы для Вас подготовили</p>
+    <svg class="chev" viewBox="0 0 34 30" fill="none" stroke="currentColor" stroke-width="2"><path d="m4 3 13 11L30 3M4 14l13 11 13-11"/></svg>
+
+    <form id="rsvpForm">
+      <label class="f-label" for="fname">Ваше Имя и Фамилия</label>
+      <input type="text" id="fname" name="name" required autocomplete="name">
+
+      <div class="q">
+        <span class="f-label">Сможете ли вы присутствовать на нашем торжестве?</span>
+        <label class="radio"><input type="radio" name="attend" value="С удовольствием приду" required> С удовольствием приду</label>
+        <label class="radio"><input type="radio" name="attend" value="К сожалению, не смогу присутствовать"> К сожалению, не смогу присутствовать</label>
+        <label class="radio"><input type="radio" name="attend" value="Сообщу позже"> Сообщу позже</label>
+      </div>
+
+      <div class="q">
+        <span class="f-label">Нужен ли вам трансфер?</span>
+        <label class="radio"><input type="radio" name="transfer" value="Да" required> Да</label>
+        <label class="radio"><input type="radio" name="transfer" value="Нет"> Нет</label>
+      </div>
+
+      <button class="send-btn" type="submit">Отправить</button>
+      <div class="form-status" id="formStatus"></div>
+    </form>
+  </div>
+</section>
+
+<div class="rule rule-r reveal"></div>
+
+<!-- ════════════════════════════════════════════
+     БЛОК 8. КОНТАКТЫ
+     ════════════════════════════════════════════ -->
+<section class="contacts reveal">
+  <div class="wrap">
+    <h2>Контакты</h2>
+    <p>Жених: +7 (999) 999-99-99</p>
+    <a class="wa" href="https://wa.me/79999999999" target="_blank" rel="noopener" aria-label="WhatsApp жениха">
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 4a12 12 0 0 0-10.4 18L4 28l6.2-1.6A12 12 0 1 0 16 4Z"/><path d="M12 11c-.5 3 2 8 6.5 9.5 1.7.6 3-.3 3.3-1.4l-2.8-1.6-1.3 1.2c-1.6-.7-3.2-2.3-3.9-3.9l1.2-1.3L13.4 10c-.7.1-1.3.5-1.4 1Z" stroke-width="1.2"/></svg>
+    </a>
+    <p>Невеста: +7 (999) 999-99-99</p>
+    <a class="wa" href="https://wa.me/79999999999" target="_blank" rel="noopener" aria-label="WhatsApp невесты">
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 4a12 12 0 0 0-10.4 18L4 28l6.2-1.6A12 12 0 1 0 16 4Z"/><path d="M12 11c-.5 3 2 8 6.5 9.5 1.7.6 3-.3 3.3-1.4l-2.8-1.6-1.3 1.2c-1.6-.7-3.2-2.3-3.9-3.9l1.2-1.3L13.4 10c-.7.1-1.3.5-1.4 1Z" stroke-width="1.2"/></svg>
+    </a>
+  </div>
+</section>
+
+<div class="rule rule-l reveal"></div>
+
+<!-- ════════════════════════════════════════════
+     БЛОК 9. ФИНАЛ
+     ════════════════════════════════════════════ -->
+<section class="finale reveal">
+  <div class="wrap">
+    <p>С любовью,</p>
+    <div class="names" id="finaleNames">Кирилл и Виктория!</div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     БЛОК 10. ОТСЧЁТ (тёмный)
+     ════════════════════════════════════════════ -->
+<section class="count count-real">
+  <div class="wrap">
+    <div class="count-title">До свадьбы осталось...</div>
+    <div class="count-grid">
+      <div class="cd-cell"><div class="cd-num" id="cdD">0</div><div class="cd-word">Дней</div></div>
+      <div class="cd-cell"><div class="cd-num" id="cdH">0</div><div class="cd-word">Часов</div></div>
+      <div class="cd-cell"><div class="cd-num" id="cdM">0</div><div class="cd-word">Минут</div></div>
+      <div class="cd-cell"><div class="cd-num" id="cdS">0</div><div class="cd-word">Секунд</div></div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* ============================================================
+   НАСТРОЙКИ — все главные данные в одном месте
+   ============================================================ */
+const CONFIG = {
+  // Дата и время свадьбы (год, месяц 1-12, день, час, минута)
+  weddingDate: new Date(2026, 8 - 1, 9, 15, 30),
+
+  /* --- Telegram: куда приходят ответы анкеты ---
+     1) В Telegram найдите @BotFather → /newbot → получите ТОКЕН
+     2) Напишите своему боту любое сообщение
+     3) Откройте https://api.telegram.org/bot<ТОКЕН>/getUpdates
+        и найдите "chat":{"id": ЧИСЛО } — это ваш CHAT_ID
+     (подробно — в файле README.md)                              */
+  telegramToken:  "ВСТАВЬТЕ_ТОКЕН_БОТА",
+  telegramChatId: "ВСТАВЬТЕ_CHAT_ID",
+};
+
+/* ---------- КАЛЕНДАРЬ (строится из CONFIG.weddingDate) ---------- */
+(function(){
+  const d = CONFIG.weddingDate;
+  const months = ['ЯНВАРЬ','ФЕВРАЛЬ','МАРТ','АПРЕЛЬ','МАЙ','ИЮНЬ','ИЮЛЬ','АВГУСТ','СЕНТЯБРЬ','ОКТЯБРЬ','НОЯБРЬ','ДЕКАБРЬ'];
+  document.getElementById('calMonth').textContent = months[d.getMonth()];
+  document.getElementById('calYear').textContent  = d.getFullYear();
+  const grid = document.getElementById('calGrid');
+  ['ПН','ВТ','СР','ЧТ','ПТ','СБ','ВС'].forEach(w=>{
+    const s=document.createElement('span'); s.className='dow'; s.textContent=w; grid.appendChild(s);
+  });
+  const first = new Date(d.getFullYear(), d.getMonth(), 1);
+  const blank = (first.getDay()+6)%7;                       // сдвиг до понедельника
+  const days  = new Date(d.getFullYear(), d.getMonth()+1, 0).getDate();
+  for(let i=0;i<blank;i++) grid.appendChild(document.createElement('span'));
+  for(let n=1;n<=days;n++){
+    const s=document.createElement('span'); s.textContent=n;
+    if(n===d.getDate()){
+      s.classList.add('heart');
+      s.insertAdjacentHTML('afterbegin',
+        '<svg viewBox="0 0 24 24" fill="none" stroke="#2e2c2a" stroke-width="1"><path d="M12 21c-5.5-4-9-7.2-9-11A5 5 0 0 1 12 7a5 5 0 0 1 9 3c0 3.8-3.5 7-9 11Z"/></svg>');
+    }
+    grid.appendChild(s);
+  }
+})();
+
+/* ---------- ОТСЧЁТ ---------- */
+function tick(){
+  const diff = CONFIG.weddingDate - new Date();
+  const c = v => Math.max(0, v);
+  cdD.textContent = c(Math.floor(diff/864e5));
+  cdH.textContent = c(Math.floor(diff/36e5)%24);
+  cdM.textContent = c(Math.floor(diff/6e4)%60);
+  cdS.textContent = c(Math.floor(diff/1e3)%60);
+}
+tick(); setInterval(tick, 1000);
+
+/* ---------- МУЗЫКА ---------- */
+const music = document.getElementById('bgMusic');
+document.getElementById('musicBtn').addEventListener('click', async () => {
+  const note = document.querySelector('.music-note');
+  try{
+    if(music.paused){
+      await music.play();
+      spkOn.style.display=''; spkOff.style.display='none';
+      note.textContent = 'нажмите, чтобы выключить';
+    }else{
+      music.pause();
+      spkOn.style.display='none'; spkOff.style.display='';
+      note.textContent = 'включите музыку для атмосферы';
+    }
+  }catch(e){ note.textContent = 'добавьте файл music.mp3 рядом с index.html'; }
+});
+
+/* ---------- КАРУСЕЛЬ ДРЕСС-КОДА ---------- */
+(function(){
+  const slides=[...document.querySelectorAll('.slide')]; let i=0;
+  const show=n=>{slides[i].classList.remove('on'); i=(n+slides.length)%slides.length; slides[i].classList.add('on');};
+  carPrev.onclick=()=>show(i-1); carNext.onclick=()=>show(i+1);
+})();
+
+/* ---------- СВОИ ФОНЫ: если рядом лежат bg.jpg / bg-dark.jpg, используем их ---------- */
+[['bg.jpg','.bg-real'],['bg-dark.jpg','.count-real']].forEach(([file,sel])=>{
+  const probe = new Image();
+  probe.onload = () => document.querySelector(sel).style.backgroundImage = `url('${file}')`;
+  probe.src = file;
+});
+
+/* ---------- ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ ---------- */
+const io = new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('visible'); io.unobserve(e.target);}
+}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- ОТПРАВКА АНКЕТЫ В TELEGRAM ---------- */
+document.getElementById('rsvpForm').addEventListener('submit', async ev => {
+  ev.preventDefault();
+  const f = new FormData(ev.target);
+  const status = document.getElementById('formStatus');
+  const btn = ev.target.querySelector('.send-btn');
+
+  const text =
+    '💌 Новый ответ на приглашение!\n\n' +
+    '👤 Имя: '      + f.get('name')     + '\n' +
+    '✅ Придёт: '   + f.get('attend')   + '\n' +
+    '🚌 Трансфер: ' + f.get('transfer');
+
+  if(CONFIG.telegramToken.startsWith('ВСТАВЬТЕ')){
+    status.className='form-status err';
+    status.textContent='Telegram ещё не настроен (см. README.md)';
+    return;
+  }
+
+  btn.disabled = true; status.className='form-status'; status.textContent='Отправляем...';
+  try{
+    const r = await fetch('https://api.telegram.org/bot'+CONFIG.telegramToken+'/sendMessage',{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({chat_id: CONFIG.telegramChatId, text})
+    });
+    if(!(await r.json()).ok) throw 0;
+    status.className='form-status ok';
+    status.textContent='Спасибо! Ваш ответ отправлен ♡';
+    ev.target.reset();
+  }catch(e){
+    status.className='form-status err';
+    status.textContent='Не получилось отправить. Напишите нам, пожалуйста, в WhatsApp';
+  }finally{ btn.disabled=false; }
+});
+</script>
+</body>
+</html>
