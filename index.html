@@ -63,8 +63,10 @@ body{
   overflow:hidden;
 }
 @media (max-width:600px){
-  .bg-real{background-position:center 95%}   /* на телефоне поднимаем фото выше, чтобы лица были над текстом */
-  .hero-tagline{margin-top:22vh}
+  .bg-real{background-position:center 100%}  /* на телефоне поднимаем фото максимально вверх */
+  .hero-tagline{margin-top:32vh}            /* текст ниже, чтобы лица были полностью над ним */
+  .hero-verse{margin-top:8px}               /* строку с цитатой подтягиваем ближе к фразе */
+  .hero-date{margin-top:7vh}                /* дату опускаем чуть ниже */
   .sheet{margin:16px auto;border-radius:24px}
   section{padding:64px 16px}
   .cal-grid{gap:8px 10px}
@@ -252,7 +254,7 @@ input[type=text]:focus{box-shadow:0 0 0 2px rgba(60,58,56,.18)}
 <section class="reveal">
   <div class="wrap">
     <div class="greet-title">Дорогие родные<br>и близкие!</div>
-    <p class="greet-text">Будем счастливы видеть вас рядом в этот особенный день</p>
+    <p class="greet-text">Будем счастливы видеть вас рядом в этот особенный день — день нашей свадьбы!</p>
 
   </div>
 </section>
@@ -310,12 +312,6 @@ input[type=text]:focus{box-shadow:0 0 0 2px rgba(60,58,56,.18)}
         <label class="radio"><input type="radio" name="attend" value="С удовольствием приду" required> С удовольствием приду</label>
         <label class="radio"><input type="radio" name="attend" value="К сожалению, не смогу присутствовать"> К сожалению, не смогу присутствовать</label>
         <label class="radio"><input type="radio" name="attend" value="Сообщу позже"> Сообщу позже</label>
-      </div>
-
-      <div class="q">
-        <span class="f-label">Нужен ли вам трансфер?</span>
-        <label class="radio"><input type="radio" name="transfer" value="Да" required> Да</label>
-        <label class="radio"><input type="radio" name="transfer" value="Нет"> Нет</label>
       </div>
 
       <div class="q">
@@ -455,8 +451,7 @@ document.getElementById('rsvpForm').addEventListener('submit', async ev => {
   const text =
     '💌 Новый ответ на приглашение!\n\n' +
     '👤 Имя: '      + f.get('name')     + '\n' +
-    '✅ Придёт: '   + f.get('attend')   + '\n' +
-    '🚌 Трансфер: ' + f.get('transfer');
+    '✅ Придёт: '   + f.get('attend');
 
   if(CONFIG.telegramToken.startsWith('ВСТАВЬТЕ')){
     status.className='form-status err';
