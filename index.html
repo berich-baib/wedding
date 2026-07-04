@@ -96,7 +96,8 @@ h2{font-size:clamp(40px,8vw,58px);font-weight:400;line-height:1.25;margin-bottom
 /* место */
 .venue p{font-size:clamp(20px,4vw,24px);line-height:1.5}
 .venue .addr{margin-top:26px}
-.map-btn{margin-top:38px;display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);padding:12px 20px;font-family:var(--serif);font-size:16px;color:var(--ink);white-space:nowrap;text-decoration:none;background:transparent;transition:background .3s,color .3s}
+.map-btns{margin-top:38px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.map-btn{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);padding:12px 20px;font-family:var(--serif);font-size:16px;color:var(--ink);white-space:nowrap;text-decoration:none;background:transparent;transition:background .3s,color .3s}
 .map-btn:hover{background:var(--ink);color:#eee}
 .map-btn .arr{font-size:17px;letter-spacing:-2px}
 
@@ -195,7 +196,10 @@ input[type=text]:focus{box-shadow:0 0 0 2px rgba(60,58,56,.18)}
     <h2 data-i18n="venueTitle">Место<br>проведения</h2>
     <p data-i18n="venueName">VillaDelMamedich</p>
     <p class="addr" data-i18n="venueAddr">Улица Центральная, 30</p>
-    <a class="map-btn" href="https://2gis.kz/almaty/geo/70000001051348653" target="_blank" rel="noopener"><span data-i18n="mapBtn">Посмотреть на карте</span> <span class="arr">⟶</span></a>
+    <div class="map-btns">
+      <a class="map-btn" href="https://2gis.kz/almaty/geo/70000001051348653" target="_blank" rel="noopener">2ГИС <span class="arr">⟶</span></a>
+      <a class="map-btn" href="https://maps.app.goo.gl/Xfyr3pCKxusuQeNZ7?g_st=ic" target="_blank" rel="noopener">Google Maps <span class="arr">⟶</span></a>
+    </div>
   </div>
 </section>
 
