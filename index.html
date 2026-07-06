@@ -88,8 +88,7 @@ h2{font-family:var(--display);font-weight:600;letter-spacing:.02em;line-height:1
 .hero-date{font-family:var(--display);letter-spacing:.32em;text-indent:.32em;font-size:clamp(18px,4vw,24px);margin-top:34px;animation:aIn 1.2s 1s ease both}
 
 /* ---------- ПРИВЕТСТВИЕ ---------- */
-.greet-title{font-family:var(--display);font-weight:600;font-size:clamp(28px,6vw,42px);line-height:1.25;color:var(--wine)}
-.greet-text{max-width:460px;margin:22px auto 0}
+.greet-text{font-family:var(--display);font-style:italic;font-size:clamp(20px,4.2vw,27px);line-height:1.5;color:var(--ink);max-width:520px;margin:0 auto}
 
 /* ---------- КНОПКИ В УГЛАХ ---------- */
 .fab{position:fixed;top:14px;z-index:60;border:none;cursor:pointer;color:var(--wine);
@@ -183,8 +182,7 @@ input[type=text]:focus{border-color:var(--wine)}
 <!-- ПРИВЕТСТВИЕ -->
 <section class="reveal">
   <div class="wrap">
-    <div class="greet-title" data-i18n="greetTitle">Дорогие родные<br>и близкие!</div>
-    <p class="greet-text" data-i18n="greetText">Будем счастливы видеть вас рядом в этот особенный день — день нашей свадьбы!</p>
+    <p class="greet-text" data-i18n="greetText">Подобно гранату, раскрывающему свою красоту в единстве множества, любовь объединяет сердца, семьи и культуры, соединяя судьбы в одну прекрасную историю.</p>
   </div>
 </section>
 
@@ -289,14 +287,14 @@ const I18N = {
   heroTagline:{ru:"Любовь никогда<br>не перестает", az:"Məhəbbət heç<br>vaxt tükənməz", en:"Love never<br>fails"},
   heroVerse:  {ru:"(1 Коринфянам 13:8)", az:"(1 Korinflilərə 13:8)", en:"(1 Corinthians 13:8)"},
   greetTitle: {ru:"Дорогие родные<br>и близкие!", az:"Əziz ailə<br>və dostlar!", en:"Dear family<br>and friends!"},
-  greetText:  {ru:"Будем счастливы видеть вас рядом в этот особенный день — день нашей свадьбы!", az:"Bu xüsusi gündə — toy günümüzdə sizi yanımızda görməyə şad olarıq!", en:"We'll be so happy to have you by our side on this special day — our wedding day!"},
+  greetText:  {ru:"Подобно гранату, раскрывающему свою красоту в единстве множества, любовь объединяет сердца, семьи и культуры, соединяя судьбы в одну прекрасную историю.", az:"Çoxluğun birliyində gözəlliyini büruzə verən nar kimi, məhəbbət qəlbləri, ailələri və mədəniyyətləri birləşdirir, taleləri bir gözəl hekayəyə çevirir.", en:"Like a pomegranate revealing its beauty in the unity of many, love unites hearts, families and cultures, weaving destinies into one beautiful story."},
   dateEyebrow:{ru:"Дата торжества", az:"Tədbir tarixi", en:"The date"},
   venueEyebrow:{ru:"Место и время", az:"Məkan və vaxt", en:"Place & time"},
   venueTitle: {ru:"Место проведения", az:"Tədbir məkanı", en:"Venue"},
   venueName:  {ru:"VillaDelMamedich", az:"VillaDelMamedich", en:"VillaDelMamedich"},
   venueAddr:  {ru:"Улица Центральная, 30", az:"Mərkəzi küçə, 30", en:"Tsentralnaya St., 30"},
-  guestsTitle:{ru:"Дорогие гости!", az:"Əziz qonaqlar!", en:"Dear guests!"},
-  noKids:     {ru:"Надеемся, что этот вечер станет для вас прекрасной возможностью отдохнуть и провести время в кругу взрослых. Поэтому мы приглашаем вас на наше торжество без детей.", az:"Ümid edirik ki, bu axşam sizin üçün dincəlmək və böyüklər arasında vaxt keçirmək üçün gözəl bir fürsət olacaq. Buna görə də sizi uşaqlarsız tədbirimizə dəvət edirik.", en:"We hope this evening will be a wonderful chance for you to relax and enjoy time among adults. That's why we kindly invite you to our celebration without children."},
+  guestsTitle:{ru:"Дорогие друзья и родные!", az:"Əziz dostlar və qohumlar!", en:"Dear friends and family!"},
+  noKids:     {ru:"Мы будем счастливы разделить с вами день, наполненный любовью, теплом и радостными моментами. С нетерпением ждём вас, чтобы вместе создать воспоминания, которые останутся с нами навсегда.", az:"Sizinlə sevgi, istilik və sevincli anlarla dolu bir günü bölüşməkdən xoşbəxt olacağıq. Birlikdə əbədi qalacaq xatirələr yaratmaq üçün sizi səbirsizliklə gözləyirik.", en:"We'll be delighted to share with you a day filled with love, warmth and joyful moments. We can't wait to see you and create memories together that will stay with us forever."},
   rsvpEyebrow:{ru:"Ваш ответ", az:"Cavabınız", en:"Your reply"},
   attendQ:    {ru:"Сможете ли вы присутствовать на нашем торжестве?", az:"Tədbirimizdə iştirak edə biləcəksinizmi?", en:"Will you be able to join our celebration?"},
   attendOpt1: {ru:"С удовольствием приду", az:"Məmnuniyyətlə gələrəm", en:"I'll gladly come"},
