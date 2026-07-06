@@ -33,6 +33,12 @@ body{font-family:var(--serif);font-weight:400;color:var(--ink);font-size:19px;li
 /* фото пары — обложка. Свой файл bg.jpg рядом с index.html подменит автоматически */
 .bg-real{ background-image:url('2026-07-04%2010.45.20.jpg'); background-position:center 30%; }
 
+/* ---- ПЕРЕКЛЮЧАТЕЛЬ ФОНА ----
+   Сплошной цвет включается классом bg-solid у <body>.
+   Чтобы ВЕРНУТЬ ФОТО — убрать "bg-solid" из тега <body>.
+   Чтобы поменять цвет — правьте значение ниже. */
+body.bg-solid .bg{ background:#540B0E !important; filter:none !important; }
+
 /* полупрозрачное «полотно» */
 .sheet{position:relative;width:min(740px,79%);margin:26px auto;background:var(--veil);border-radius:33px;overflow:hidden}
 
@@ -136,7 +142,7 @@ input[type=text]:focus{box-shadow:0 0 0 2px rgba(60,58,56,.18)}
 .cd-word{font-size:13px;letter-spacing:.04em;margin-top:12px;opacity:.85;font-family:Arial,sans-serif;font-weight:300}
 </style>
 </head>
-<body>
+<body class="bg-solid"><!-- фон сплошным цветом; убрать "bg-solid" — вернётся фото -->
 
 <div class="bg bg-real"></div>
 
