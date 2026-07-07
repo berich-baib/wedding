@@ -121,6 +121,7 @@ h2{font-family:var(--display);font-weight:600;letter-spacing:.02em;line-height:1
 
 /* ---------- АНКЕТА ---------- */
 .rsvp-intro{font-family:var(--display);font-size:clamp(20px,4vw,25px);line-height:1.5;max-width:460px;margin:0 auto;color:var(--ink)}
+.rsvp-intro-2{margin-top:1.3em}
 .rsvp form{max-width:520px;margin:0 auto;text-align:left}
 .f-label{font-family:var(--display);font-weight:600;font-size:20px;margin-bottom:6px;display:block;color:var(--wine)}
 input[type=text]{width:100%;background:#fffdf8;border:1px solid var(--gold);font-family:var(--serif);font-size:18px;color:var(--ink);padding:15px 16px;outline:none;margin-top:10px;border-radius:4px}
@@ -221,7 +222,8 @@ input[type=text]:focus{border-color:var(--wine)}
 <section class="reveal">
   <div class="wrap">
     <h2 data-i18n="guestsTitle">Дорогие друзья и родные!</h2>
-    <p class="rsvp-intro" data-i18n="noKids">Мы будем счастливы разделить с вами день, наполненный любовью, теплом и радостными моментами.<br><br>С нетерпением ждём вас, чтобы вместе создать воспоминания, которые останутся с нами навсегда.</p>
+    <p class="rsvp-intro" data-i18n="noKids1">Мы будем счастливы разделить с вами день, наполненный любовью, теплом и радостными моментами.</p>
+    <p class="rsvp-intro rsvp-intro-2" data-i18n="noKids2">С нетерпением ждём вас, чтобы вместе создать воспоминания, которые останутся с нами навсегда.</p>
   </div>
 </section>
 
@@ -294,7 +296,8 @@ const I18N = {
   venueName:  {ru:"VillaDelMamedich", az:"VillaDelMamedich", en:"VillaDelMamedich"},
   venueAddr:  {ru:"Улица Центральная, 30", az:"Mərkəzi küçə, 30", en:"Tsentralnaya St., 30"},
   guestsTitle:{ru:"Дорогие друзья и родные!", az:"Əziz dostlar və qohumlar!", en:"Dear friends and family!"},
-  noKids:     {ru:"Мы будем счастливы разделить с вами день, наполненный любовью, теплом и радостными моментами.<br><br>С нетерпением ждём вас, чтобы вместе создать воспоминания, которые останутся с нами навсегда.", az:"Sizinlə sevgi, istilik və sevincli anlarla dolu bir günü bölüşməkdən xoşbəxt olacağıq.<br><br>Birlikdə əbədi qalacaq xatirələr yaratmaq üçün sizi səbirsizliklə gözləyirik.", en:"We'll be delighted to share with you a day filled with love, warmth and joyful moments.<br><br>We can't wait to see you and create memories together that will stay with us forever."},
+  noKids1:    {ru:"Мы будем счастливы разделить с вами день, наполненный любовью, теплом и радостными моментами.", az:"Sizinlə sevgi, istilik və sevincli anlarla dolu bir günü bölüşməkdən xoşbəxt olacağıq.", en:"We'll be delighted to share with you a day filled with love, warmth and joyful moments."},
+  noKids2:    {ru:"С нетерпением ждём вас, чтобы вместе создать воспоминания, которые останутся с нами навсегда.", az:"Birlikdə əbədi qalacaq xatirələr yaratmaq üçün sizi səbirsizliklə gözləyirik.", en:"We can't wait to see you and create memories together that will stay with us forever."},
   rsvpEyebrow:{ru:"Ваш ответ", az:"Cavabınız", en:"Your reply"},
   attendQ:    {ru:"Сможете ли вы присутствовать на нашем торжестве?", az:"Tədbirimizdə iştirak edə biləcəksinizmi?", en:"Will you be able to join our celebration?"},
   attendOpt1: {ru:"С удовольствием приду", az:"Məmnuniyyətlə gələrəm", en:"I'll gladly come"},
