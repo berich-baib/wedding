@@ -286,7 +286,7 @@ input[type=text]:focus{border-color:var(--wine)}
   <div class="wrap">
     <div class="eyebrow" data-i18n="dressEyebrow">Образ вечера</div>
     <h2 data-i18n="dressTitle">Дресс-код</h2>
-    <p class="rsvp-intro" data-i18n="dressText">Будем рады, если вы поддержите цветовую гамму нашего торжества — глубокие гранатовые и винные оттенки. Так праздник сложится в единый образ, а фотографии на память станут ещё красивее.</p>
+    <p class="rsvp-intro" data-i18n="dressText">Будем рады, если вы поддержите цветовую гамму нашего торжества — глубокие гранатовые и винные оттенки.<br><br>Так праздник сложится в единый образ, а фотографии на память станут ещё красивее.</p>
     <div class="swatches">
       <div class="swatch" style="background:#4d0d11"></div>
       <div class="swatch" style="background:#7a1620"></div>
@@ -304,7 +304,7 @@ input[type=text]:focus{border-color:var(--wine)}
   <div class="wrap">
     <div class="eyebrow" data-i18n="bringEyebrow">Пара деталей</div>
     <h2 data-i18n="bringTitle">Несколько пожеланий</h2>
-    <p class="rsvp-intro" data-i18n="bringText">Наше торжество пройдёт в горах — в месте с особенной атмосферой, но по вечерам там свежо. Пожалуйста, возьмите с собой тёплую накидку или кофту. А если вы планируете быть на каблуках, захватите удобную сменную обувь: местами встречается трава и неровности, а танцевать хочется легко и до самого утра.</p>
+    <p class="rsvp-intro" data-i18n="bringText">Наше торжество пройдёт в горах — в месте с особенной атмосферой, но по вечерам там свежо. Пожалуйста, возьмите с собой тёплую накидку или кофту.<br><br>А если вы планируете быть на каблуках, захватите удобную сменную обувь: местами встречается трава и неровности, а танцевать хочется легко и до самого утра.</p>
   </div>
 </section>
 
@@ -315,7 +315,7 @@ input[type=text]:focus{border-color:var(--wine)}
   <div class="wrap">
     <div class="eyebrow" data-i18n="giftEyebrow">От всего сердца</div>
     <h2 data-i18n="giftTitle">О подарках</h2>
-    <p class="rsvp-intro" data-i18n="giftText">Самый ценный подарок для нас — это вы рядом. Но если вам захочется сделать нам приятное, мы будем искренне признательны за вклад в наш первый общий дом: мы собираем средства на собственную квартиру. Спасибо, что помогаете нашей мечте стать ближе.</p>
+    <p class="rsvp-intro" data-i18n="giftText">Самый ценный подарок для нас — это вы рядом.<br><br>Но если вам захочется сделать нам приятное, мы будем искренне признательны за вклад в наш первый общий дом: мы собираем средства на собственную квартиру.<br><br>Спасибо, что помогаете нашей мечте стать ближе.</p>
   </div>
 </section>
 
@@ -394,13 +394,13 @@ const I18N = {
   photoCaption:{ru:"Наша история", az:"Bizim hekayəmiz", en:"Our story"},
   dressEyebrow:{ru:"Образ вечера", az:"Axşamın üslubu", en:"The look"},
   dressTitle: {ru:"Дресс-код", az:"Dress-kod", en:"Dress code"},
-  dressText:  {ru:"Будем рады, если вы поддержите цветовую гамму нашего торжества — глубокие гранатовые и винные оттенки. Так праздник сложится в единый образ, а фотографии на память станут ещё красивее.", az:"Sevinərik ki, tədbirimizin rəng çalarlarını — dərin nar və şərab tonlarını — dəstəkləyəsiniz. Belə olduqda bayram vahid görünüş alacaq, xatirə şəkilləri isə daha da gözəl olacaq.", en:"We'd be delighted if you echoed the palette of our celebration — deep pomegranate and wine shades. It will tie the day together and make our photos even more beautiful."},
+  dressText:  {ru:"Будем рады, если вы поддержите цветовую гамму нашего торжества — глубокие гранатовые и винные оттенки.<br><br>Так праздник сложится в единый образ, а фотографии на память станут ещё красивее.", az:"Sevinərik ki, tədbirimizin rəng çalarlarını — dərin nar və şərab tonlarını — dəstəkləyəsiniz.<br><br>Belə olduqda bayram vahid görünüş alacaq, xatirə şəkilləri isə daha da gözəl olacaq.", en:"We'd be delighted if you echoed the palette of our celebration — deep pomegranate and wine shades.<br><br>It will tie the day together and make our photos even more beautiful."},
   bringEyebrow:{ru:"Пара деталей", az:"Bir neçə detal", en:"Good to know"},
   bringTitle: {ru:"Несколько пожеланий", az:"Bir neçə xahiş", en:"A few notes"},
-  bringText:  {ru:"Наше торжество пройдёт в горах — в месте с особенной атмосферой, но по вечерам там свежо. Пожалуйста, возьмите с собой тёплую накидку или кофту. А если вы планируете быть на каблуках, захватите удобную сменную обувь: местами встречается трава и неровности, а танцевать хочется легко и до самого утра.", az:"Tədbirimiz dağlarda — xüsusi ab-havası olan bir yerdə keçiriləcək, lakin axşamlar orada sərin olur. Xahiş edirik, özünüzlə isti şal və ya jaket götürün. Əgər dabanlı ayaqqabı geyinməyi planlaşdırırsınızsa, rahat əvəzedici ayaqqabı da götürün: yer-yer ot və nahamar sahələr var, biz isə səhərədək rahat rəqs etməyinizi istəyirik.", en:"Our celebration will take place in the mountains — a place with a special atmosphere, though the evenings there are cool. Please bring a warm wrap or cardigan. And if you plan to wear heels, take a comfortable spare pair too: there's grass and uneven ground here and there, and we want you dancing with ease until morning."},
+  bringText:  {ru:"Наше торжество пройдёт в горах — в месте с особенной атмосферой, но по вечерам там свежо. Пожалуйста, возьмите с собой тёплую накидку или кофту.<br><br>А если вы планируете быть на каблуках, захватите удобную сменную обувь: местами встречается трава и неровности, а танцевать хочется легко и до самого утра.", az:"Tədbirimiz dağlarda — xüsusi ab-havası olan bir yerdə keçiriləcək, lakin axşamlar orada sərin olur. Xahiş edirik, özünüzlə isti şal və ya jaket götürün.<br><br>Əgər dabanlı ayaqqabı geyinməyi planlaşdırırsınızsa, rahat əvəzedici ayaqqabı da götürün: yer-yer ot və nahamar sahələr var, biz isə səhərədək rahat rəqs etməyinizi istəyirik.", en:"Our celebration will take place in the mountains — a place with a special atmosphere, though the evenings there are cool. Please bring a warm wrap or cardigan.<br><br>And if you plan to wear heels, take a comfortable spare pair too: there's grass and uneven ground here and there, and we want you dancing with ease until morning."},
   giftEyebrow:{ru:"От всего сердца", az:"Ürəkdən", en:"From the heart"},
   giftTitle:  {ru:"О подарках", az:"Hədiyyələr haqqında", en:"About gifts"},
-  giftText:   {ru:"Самый ценный подарок для нас — это вы рядом. Но если вам захочется сделать нам приятное, мы будем искренне признательны за вклад в наш первый общий дом: мы собираем средства на собственную квартиру. Спасибо, что помогаете нашей мечте стать ближе.", az:"Bizim üçün ən qiymətli hədiyyə — sizin yanımızda olmağınızdır. Amma bizi sevindirmək istəsəniz, ilk ortaq evimizə töhfənizə görə səmimi minnətdar olarıq: öz mənzilimiz üçün vəsait toplayırıq. Arzumuzu gerçəkləşdirməyə kömək etdiyiniz üçün təşəkkür edirik.", en:"The most precious gift for us is simply having you here. But if you'd like to do something more, we'll be truly grateful for a contribution to our first home together: we're saving for our own apartment. Thank you for helping our dream come true."},
+  giftText:   {ru:"Самый ценный подарок для нас — это вы рядом.<br><br>Но если вам захочется сделать нам приятное, мы будем искренне признательны за вклад в наш первый общий дом: мы собираем средства на собственную квартиру.<br><br>Спасибо, что помогаете нашей мечте стать ближе.", az:"Bizim üçün ən qiymətli hədiyyə — sizin yanımızda olmağınızdır.<br><br>Amma bizi sevindirmək istəsəniz, ilk ortaq evimizə töhfənizə görə səmimi minnətdar olarıq: öz mənzilimiz üçün vəsait toplayırıq.<br><br>Arzumuzu gerçəkləşdirməyə kömək etdiyiniz üçün təşəkkür edirik.", en:"The most precious gift for us is simply having you here.<br><br>But if you'd like to do something more, we'll be truly grateful for a contribution to our first home together: we're saving for our own apartment.<br><br>Thank you for helping our dream come true."},
   guestsTitle:{ru:"Дорогие друзья и родные!", az:"Əziz dostlar və qohumlar!", en:"Dear friends and family!"},
   noKids1:    {ru:"Мы будем счастливы разделить с вами день, наполненный любовью, теплом и радостными моментами.", az:"Sizinlə sevgi, istilik və sevincli anlarla dolu bir günü bölüşməkdən xoşbəxt olacağıq.", en:"We'll be delighted to share with you a day filled with love, warmth and joyful moments."},
   noKids2:    {ru:"С нетерпением ждём вас, чтобы вместе создать воспоминания, которые останутся с нами навсегда.", az:"Birlikdə əbədi qalacaq xatirələr yaratmaq üçün sizi səbirsizliklə gözləyirik.", en:"We can't wait to see you and create memories together that will stay with us forever."},
