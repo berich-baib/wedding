@@ -134,6 +134,14 @@ h2{font-family:var(--display);font-weight:600;letter-spacing:.02em;line-height:1
 .plan-time{font-family:var(--display);font-weight:600;font-size:clamp(23px,5vw,29px);color:var(--wine);line-height:1}
 .plan-name{font-family:var(--display);font-size:clamp(17px,3.6vw,21px);color:var(--ink);line-height:1.2}
 
+/* ---------- ФОТО В РАМКЕ ---------- */
+.photo-frame{width:min(300px,74%);margin:14px auto 0;padding:9px;border:1px solid var(--gold);background:rgba(255,255,255,.55);box-shadow:0 10px 26px rgba(0,0,0,.16)}
+.photo-frame img{display:block;width:100%;filter:grayscale(1)}
+
+/* ---------- ПАЛИТРА ДРЕСС-КОДА ---------- */
+.swatches{display:flex;justify-content:center;gap:13px;margin-top:26px;flex-wrap:wrap}
+.swatch{width:44px;height:44px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12), 0 4px 12px rgba(0,0,0,.12)}
+
 /* ---------- АНКЕТА ---------- */
 .rsvp-intro{font-family:var(--display);font-size:clamp(20px,4vw,25px);line-height:1.5;max-width:460px;margin:0 auto;color:var(--ink)}
 .rsvp-intro-2{margin-top:1.3em}
@@ -204,6 +212,16 @@ input[type=text]:focus{border-color:var(--wine)}
 
 <div class="rule reveal"></div>
 
+<!-- ФОТО -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="photoCaption">Наша история</div>
+    <div class="photo-frame"><img src="2026-07-04%2010.45.20.jpg" alt="Алишер и Милана"></div>
+  </div>
+</section>
+
+<div class="rule reveal"></div>
+
 <!-- КАЛЕНДАРЬ -->
 <section class="reveal">
   <div class="wrap">
@@ -265,6 +283,46 @@ input[type=text]:focus{border-color:var(--wine)}
     <h2 data-i18n="guestsTitle">Дорогие друзья и родные!</h2>
     <p class="rsvp-intro" data-i18n="noKids1">Мы будем счастливы разделить с вами день, наполненный любовью, теплом и радостными моментами.</p>
     <p class="rsvp-intro rsvp-intro-2" data-i18n="noKids2">С нетерпением ждём вас, чтобы вместе создать воспоминания, которые останутся с нами навсегда.</p>
+  </div>
+</section>
+
+<div class="rule reveal"></div>
+
+<!-- ДРЕСС-КОД -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="dressEyebrow">Образ вечера</div>
+    <h2 data-i18n="dressTitle">Дресс-код</h2>
+    <p class="rsvp-intro" data-i18n="dressText">Будем рады, если вы поддержите цветовую гамму нашего торжества — глубокие гранатовые и винные оттенки. Так праздник сложится в единый образ, а фотографии на память станут ещё красивее.</p>
+    <div class="swatches">
+      <div class="swatch" style="background:#4d0d11"></div>
+      <div class="swatch" style="background:#7a1620"></div>
+      <div class="swatch" style="background:#9e2b2b"></div>
+      <div class="swatch" style="background:#b8975a"></div>
+      <div class="swatch" style="background:#f4ecdc"></div>
+    </div>
+  </div>
+</section>
+
+<div class="rule reveal"></div>
+
+<!-- ЧТО ВЗЯТЬ С СОБОЙ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="bringEyebrow">Пара деталей</div>
+    <h2 data-i18n="bringTitle">Несколько пожеланий</h2>
+    <p class="rsvp-intro" data-i18n="bringText">Наше торжество пройдёт в горах — в месте с особенной атмосферой, но по вечерам там свежо. Пожалуйста, возьмите с собой тёплую накидку или кофту. А если вы планируете быть на каблуках, захватите удобную сменную обувь: местами встречается трава и неровности, а танцевать хочется легко и до самого утра.</p>
+  </div>
+</section>
+
+<div class="rule reveal"></div>
+
+<!-- О ПОДАРКАХ -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="giftEyebrow">От всего сердца</div>
+    <h2 data-i18n="giftTitle">О подарках</h2>
+    <p class="rsvp-intro" data-i18n="giftText">Самый ценный подарок для нас — это вы рядом. Но если вам захочется сделать нам приятное, мы будем искренне признательны за вклад в наш первый общий дом: мы собираем средства на собственную квартиру. Спасибо, что помогаете нашей мечте стать ближе.</p>
   </div>
 </section>
 
@@ -340,6 +398,16 @@ const I18N = {
   sched1:     {ru:"Сбор гостей", az:"Qonaqların qarşılanması", en:"Guest gathering"},
   sched2:     {ru:"Венчание", az:"Nikah mərasimi", en:"Wedding ceremony"},
   sched3:     {ru:"Начало торжества", az:"Təntənənin başlanğıcı", en:"Celebration begins"},
+  photoCaption:{ru:"Наша история", az:"Bizim hekayəmiz", en:"Our story"},
+  dressEyebrow:{ru:"Образ вечера", az:"Axşamın üslubu", en:"The look"},
+  dressTitle: {ru:"Дресс-код", az:"Dress-kod", en:"Dress code"},
+  dressText:  {ru:"Будем рады, если вы поддержите цветовую гамму нашего торжества — глубокие гранатовые и винные оттенки. Так праздник сложится в единый образ, а фотографии на память станут ещё красивее.", az:"Sevinərik ki, tədbirimizin rəng çalarlarını — dərin nar və şərab tonlarını — dəstəkləyəsiniz. Belə olduqda bayram vahid görünüş alacaq, xatirə şəkilləri isə daha da gözəl olacaq.", en:"We'd be delighted if you echoed the palette of our celebration — deep pomegranate and wine shades. It will tie the day together and make our photos even more beautiful."},
+  bringEyebrow:{ru:"Пара деталей", az:"Bir neçə detal", en:"Good to know"},
+  bringTitle: {ru:"Несколько пожеланий", az:"Bir neçə xahiş", en:"A few notes"},
+  bringText:  {ru:"Наше торжество пройдёт в горах — в месте с особенной атмосферой, но по вечерам там свежо. Пожалуйста, возьмите с собой тёплую накидку или кофту. А если вы планируете быть на каблуках, захватите удобную сменную обувь: местами встречается трава и неровности, а танцевать хочется легко и до самого утра.", az:"Tədbirimiz dağlarda — xüsusi ab-havası olan bir yerdə keçiriləcək, lakin axşamlar orada sərin olur. Xahiş edirik, özünüzlə isti şal və ya jaket götürün. Əgər dabanlı ayaqqabı geyinməyi planlaşdırırsınızsa, rahat əvəzedici ayaqqabı da götürün: yer-yer ot və nahamar sahələr var, biz isə səhərədək rahat rəqs etməyinizi istəyirik.", en:"Our celebration will take place in the mountains — a place with a special atmosphere, though the evenings there are cool. Please bring a warm wrap or cardigan. And if you plan to wear heels, take a comfortable spare pair too: there's grass and uneven ground here and there, and we want you dancing with ease until morning."},
+  giftEyebrow:{ru:"От всего сердца", az:"Ürəkdən", en:"From the heart"},
+  giftTitle:  {ru:"О подарках", az:"Hədiyyələr haqqında", en:"About gifts"},
+  giftText:   {ru:"Самый ценный подарок для нас — это вы рядом. Но если вам захочется сделать нам приятное, мы будем искренне признательны за вклад в наш первый общий дом: мы собираем средства на собственную квартиру. Спасибо, что помогаете нашей мечте стать ближе.", az:"Bizim üçün ən qiymətli hədiyyə — sizin yanımızda olmağınızdır. Amma bizi sevindirmək istəsəniz, ilk ortaq evimizə töhfənizə görə səmimi minnətdar olarıq: öz mənzilimiz üçün vəsait toplayırıq. Arzumuzu gerçəkləşdirməyə kömək etdiyiniz üçün təşəkkür edirik.", en:"The most precious gift for us is simply having you here. But if you'd like to do something more, we'll be truly grateful for a contribution to our first home together: we're saving for our own apartment. Thank you for helping our dream come true."},
   guestsTitle:{ru:"Дорогие друзья и родные!", az:"Əziz dostlar və qohumlar!", en:"Dear friends and family!"},
   noKids1:    {ru:"Мы будем счастливы разделить с вами день, наполненный любовью, теплом и радостными моментами.", az:"Sizinlə sevgi, istilik və sevincli anlarla dolu bir günü bölüşməkdən xoşbəxt olacağıq.", en:"We'll be delighted to share with you a day filled with love, warmth and joyful moments."},
   noKids2:    {ru:"С нетерпением ждём вас, чтобы вместе создать воспоминания, которые останутся с нами навсегда.", az:"Birlikdə əbədi qalacaq xatirələr yaratmaq üçün sizi səbirsizliklə gözləyirik.", en:"We can't wait to see you and create memories together that will stay with us forever."},
