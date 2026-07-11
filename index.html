@@ -449,27 +449,17 @@ function tick(){
 }
 tick(); setInterval(tick, 1000);
 
-/* музыка: беззвучный автозапуск + включение звука при первом касании страницы.
-   Браузеры (особенно Safari и мобильные) запрещают звук до первого действия —
-   поэтому запускаем тихо, а на первом касании/скролле снимаем «немой» режим. */
+/* музыка: пробуем запустить сразу (в Telegram и др. — играет автоматически);
+   если браузер блокирует — включаем при первом касании/скролле */
 const music = document.getElementById('bgMusic');
-let wantSound = true;
-function updIcon(){ const on = !music.paused && !music.muted; spkOn.style.display = on?'':'none'; spkOff.style.display = on?'none':''; }
-music.muted = true;
-music.play().catch(()=>{});
-updIcon();
+const updIcon = () => { spkOn.style.display = music.paused?'none':''; spkOff.style.display = music.paused?'':'none'; };
+let userStopped = false;
 const gestures = ['pointerdown','touchstart','keydown','scroll'];
-function firstGesture(e){
-  if(e.target && e.target.closest && e.target.closest('#musicBtn')) return; /* кнопкой управляем отдельно */
-  if(wantSound && music.muted){ music.muted=false; if(music.paused) music.play().catch(()=>{}); updIcon(); }
-  gestures.forEach(g=>document.removeEventListener(g, firstGesture, true));
-}
-gestures.forEach(g=>document.addEventListener(g, firstGesture, {capture:true, passive:true}));
-document.getElementById('musicBtn').addEventListener('click', ()=>{
-  const silent = music.muted || music.paused;
-  if(silent){ wantSound=true; music.muted=false; if(music.paused) music.play().catch(()=>{}); }
-  else { wantSound=false; music.muted=true; }
-  updIcon();
+const onGesture = () => { if(!userStopped && music.paused) music.play().then(updIcon).catch(()=>{}); gestures.forEach(g=>removeEventListener(g,onGesture)); };
+music.play().then(updIcon).catch(()=>{ gestures.forEach(g=>addEventListener(g,onGesture,{passive:true})); });
+document.getElementById('musicBtn').addEventListener('click', () => {
+  if(music.paused){ userStopped=false; music.play().then(updIcon).catch(()=>{}); }
+  else { userStopped=true; music.pause(); updIcon(); }
 });
 
 /* появление при скролле */
