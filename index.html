@@ -449,14 +449,23 @@ function tick(){
 }
 tick(); setInterval(tick, 1000);
 
-/* музыка: пробуем запустить сразу (в Telegram и др. — играет автоматически);
-   если браузер блокирует — включаем при первом касании/скролле */
+/* музыка: играет сразу при открытии (где браузер разрешает — Telegram, Android и т.п.).
+   Кнопка-динамик выключает/включает звук. Если браузер блокирует автозапуск (строгий
+   Safari) — музыка стартует при первом касании страницы. */
 const music = document.getElementById('bgMusic');
 const updIcon = () => { spkOn.style.display = music.paused?'none':''; spkOff.style.display = music.paused?'':'none'; };
 let userStopped = false;
-const gestures = ['pointerdown','touchstart','keydown','scroll'];
-const onGesture = () => { if(!userStopped && music.paused) music.play().then(updIcon).catch(()=>{}); gestures.forEach(g=>removeEventListener(g,onGesture)); };
-music.play().then(updIcon).catch(()=>{ gestures.forEach(g=>addEventListener(g,onGesture,{passive:true})); });
+function tryPlay(){ if(!userStopped && music.paused){ music.play().then(updIcon).catch(()=>{}); } }
+/* пробуем запустить при первой же возможности */
+tryPlay();
+['canplay','loadeddata','canplaythrough'].forEach(ev=>music.addEventListener(ev, tryPlay));
+document.addEventListener('DOMContentLoaded', tryPlay);
+window.addEventListener('load', tryPlay);
+/* запасной вариант: старт при первом действии пользователя */
+const gestures = ['pointerdown','touchstart','keydown','scroll','click'];
+const onGesture = () => { tryPlay(); if(!music.paused) gestures.forEach(g=>removeEventListener(g,onGesture)); };
+gestures.forEach(g=>addEventListener(g,onGesture,{passive:true}));
+updIcon();
 document.getElementById('musicBtn').addEventListener('click', () => {
   if(music.paused){ userStopped=false; music.play().then(updIcon).catch(()=>{}); }
   else { userStopped=true; music.pause(); updIcon(); }
