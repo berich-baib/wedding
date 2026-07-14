@@ -302,10 +302,10 @@ input[type=text]:focus{border-color:var(--wine)}
   </div>
 </section>
 
-<div class="rule reveal"></div>
+<div class="rule reveal" id="giftRule"></div>
 
-<!-- ПОДАРОК -->
-<section class="gift reveal">
+<!-- ПОДАРОК (только английская версия) -->
+<section class="gift reveal" id="giftSection">
   <div class="wrap">
     <div class="eyebrow" data-i18n="giftEyebrow">Подарок</div>
     <h2 data-i18n="giftTitle">Хотите сделать подарок?</h2>
@@ -477,6 +477,9 @@ function applyLang(lang){
   document.querySelectorAll('[data-i18n]').forEach(el=>{ el.innerHTML = t(el.dataset.i18n); });
   document.querySelectorAll('[data-i18n-ph]').forEach(el=>{ el.placeholder = t(el.dataset.i18nPh); });
   document.getElementById('langLabel').textContent = lang.toUpperCase();
+  const showGift = lang === 'en';
+  document.getElementById('giftRule').style.display = showGift ? '' : 'none';
+  document.getElementById('giftSection').style.display = showGift ? '' : 'none';
   buildCalendar();
 }
 document.getElementById('langBtn').addEventListener('click', ()=>{
